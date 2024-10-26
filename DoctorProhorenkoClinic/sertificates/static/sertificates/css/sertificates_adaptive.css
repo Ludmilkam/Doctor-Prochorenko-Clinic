@@ -1,0 +1,101 @@
+@media (max-width: 600px) {
+    header {
+        padding: 8px 10px;
+        width: 100%;
+    }
+
+    body {max-width: 600px;}
+
+    header #logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .links {display: none;}
+
+    #text-block{
+        text-align: center;
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    #text-block h1 {font-size: 24px;}
+
+    #text-block h2 {font-size: 16px;}
+
+    .sertificate h2{text-align: center;}
+
+    .sertificate {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .img-sertificate {
+        width: 100%;
+        height: 300px;
+        background-color: #C0C0C0;
+        border-radius: 10px;
+        max-width: 400px;
+    }
+
+    .sertificate-text {
+        width: 100%;
+        align-items: flex-start;
+        margin-left: 40px;
+    }
+
+    .sertificate-text h2 {font-size: 18px;}
+
+    #sertificate-main-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .img-sertificate.mobile-vertical {
+        height: 400px;
+        width: 500px;
+        rotate: 270deg;
+    }
+
+    .img-sertificate.mobile-vertical2 {
+        height: 400px;
+        width: 500px;
+        rotate: 90deg;
+    }
+
+    .sertificate-text h1 {font-size: 26px;}
+    .sertificate-text p {font-size: 22px;}
+
+    .sertificate.right-ds {flex-direction: column-reverse;}
+}
+
+@media (min-width: 600px) and (max-width: 1200px) {
+    .sertificate-text h2 {font-size: 24px;}
+
+    .img-sertificate {
+        width: 50%;
+        height: 400px;
+    }
+
+    .sertificate-text h1 {font-size: 28px;}
+    .sertificate-text p {font-size: 24px;}
+}
+
+@media (max-width: 480px) {
+    .img-sertificate {width: 360px;}
+    .img-sertificate.mobile-vertical {
+        width: 300px;
+        height: 360px;
+    }
+    .img-sertificate.mobile-vertical2 {
+        width: 300px;
+        height: 360px;
+    }
+}

@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'auth_reg/css/auth_and_reg.css' %}">
+    <link rel="stylesheet" href="{% static 'auth_reg/css/auth_and_reg_adaptive.css' %}">
+    <script src="{% static 'auth_reg/js/auth_reg.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+            no-repeat center/120% url("{% static 'auth_reg/img/bg.png' %}");
+        }
+
+        .show-hide-btn {
+            appearance: none;
+        }
+
+        .check_box {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: no-repeat center/100% url("{% static 'auth_reg/img/hide.png' %}");
+            cursor: pointer;
+        }
+
+        .show-hide-btn:checked + .check_box {
+            background: no-repeat center/100% url("{% static 'auth_reg/img/show.png' %}");
+        }
+
+        @media (max-width: 600px) {
+            .form-input-div {width: 400px;}
+            .submit-btn {width:max-content;}
+
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/300% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-input-div {width: 350px;}
+
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/380% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 1200px) {
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/230% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+
+    </style>
+
+    <div class="sign-in-block">
+        <div class="sign-link-block">
+            <p class="header-text">Увійти</p>
+            <div class="an-page-link-block">
+                <p class="small-text">Ще немає акаунту?</p>
+                <a href="{% url 'reg_page' %}" class="small-text link">Зареєструватись</a>
+            </div>
+        </div>
+
+        <div class="form-block">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-fields-div">
+                    <div class="form-input-div">
+                        <p class="typed-text">Ваше ім'я</p>
+                        <input type="text" name="username" class="form-input typed-text" value="{{username_input}}">
+                    </div>
+
+                    <div class="form-input-div">
+                        <div class="input-placeholder-password">
+                            <p class="typed-text">Ваш пароль</p>
+                            <label class="check">
+                                <input type="checkbox" class="show-hide-btn">
+                                <span class="check_box"></span>
+                            </label>
+                        </div>
+                        <input type="password" name="password" class="form-input password typed-text" value="{{password_input}}">
+                        
+                    </div>
+                </div>
+
+                {% if error %}
+                    <p class="error-text">{{error}}</p>
+                {% endif %}
+
+                <input type="submit" value="Підтвердити" name="join_btn" class="submit-btn typed-text">
+                {% if leave_btn %}
+                    <input type="submit" value="Вийти" name="leave_btn" class="submit-btn typed-text">
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

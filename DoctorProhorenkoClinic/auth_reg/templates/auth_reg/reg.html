@@ -1,0 +1,128 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'auth_reg/css/auth_and_reg.css' %}">
+    <link rel="stylesheet" href="{% static 'auth_reg/css/auth_and_reg_adaptive.css' %}">
+
+    <script src="{% static 'auth_reg/js/auth_reg.js' %}" defer></script>
+    <script src="{% static 'main/js/phone_valid.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+            no-repeat center/120% url("{% static 'auth_reg/img/bg.png' %}");
+            /* overflow-y: hidden; */
+        }
+
+        .show-hide-btn {
+            appearance: none;
+        }
+
+        .check_box {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: no-repeat center/100% url("{% static 'auth_reg/img/hide.png' %}");
+            cursor: pointer;
+        }
+
+        .show-hide-btn:checked + .check_box {
+            background: no-repeat center/100% url("{% static 'auth_reg/img/show.png' %}");
+        }
+
+        @media (max-width: 600px) {
+            .form-input-div {width: 400px;}
+            .submit-btn {width:max-content;}
+
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/300% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-input-div {width: 350px;}
+
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/380% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 1200px) {
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                no-repeat center/230% url("{% static 'auth_reg/img/bg.png' %}");
+            }
+        }
+    </style>
+
+    <div class="sign-in-block reg">
+        <div class="sign-link-block">
+            <p class="header-text">Створити акаунт</p>
+            <div class="an-page-link-block">
+                <p class="small-text">Вже є акаунт?</p>
+                <a href="{% url 'auth_page' %}" class="small-text link">Увійти</a>
+            </div>
+        </div>
+
+        <div class="form-block reg">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-fields-div">
+                    <div class="form-input-div">
+                        <p class="typed-text">Ваше ім'я</p>
+                        <input type="text" name="username" class="form-input typed-text" value="{{username_input}}">
+                    </div>
+
+                    <div class="form-input-div">
+                        <p class="typed-text">Ваше прізвище</p>
+                        <input type="text" name="surname" class="form-input typed-text" value="{{surname_input}}">
+                    </div>
+
+                    <div class="form-input-div">
+                        <p class="typed-text">Ваш номер телефону</p>
+                        <input type="text" name="phone" class="form-input typed-text phone" value="{{phone_input}}">
+                    </div>
+
+                    <div class="form-input-div">
+                        <p class="typed-text">Ваша пошта</p>
+                        <input type="email" name="email" class="form-input typed-text" value="{{email_input}}">
+                    </div>
+
+                    <div class="form-input-div">
+                        <div class="input-placeholder-password">
+                            <p class="typed-text">Ваш пароль</p>
+                            <label class="check">
+                                <input type="checkbox" class="show-hide-btn">
+                                <span class="check_box"></span>
+                            </label>
+                        </div>
+                        <input type="password" name="password" class="form-input password typed-text" value="{{password_input}}">
+                    </div>
+
+                    <div class="password-hints">
+                        <div class="hints">
+                            <span class="dot"></span>
+                            <p class="small-text">Пароль має бути більшим за 8 символів</p>
+                        </div>
+                        <div class="hints">
+                            <span class="dot"></span>
+                            <p class="small-text">Пошта має містити “@”</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if error %}
+                    <p class="error-text">{{error}}</p>
+                {% endif %}
+
+
+                <input type="submit" value="Підтвердити" class="submit-btn typed-text" name="register_button">
+            </form>
+        </div>
+    </div>
+{% endblock %}
